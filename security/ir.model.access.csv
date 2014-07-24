@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rdm_tenant_manager,rdm.tenant.manager,model_rdm_tenant,base.group_rdm_manager,1,1,1,1
+access_rdm_tenant_operator,rdm.tenant.operator,model_rdm_tenant,base.group_rdm_operator,1,0,0,0
