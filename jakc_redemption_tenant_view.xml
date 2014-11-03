@@ -6,29 +6,39 @@
             <field name="model">rdm.tenant</field>						
             <field name="type">form</field>						
             <field name="arch" type="xml">
-                <form string="Tenant">  
-                    <group colspan="4">                            
-                        <field name="name"/>
-                        <field name="company"/>
-                        <field name="type"/>
-                        <field name="grade"/>                        
-                        <field name="participant"/>                            
-                        <field name="location"/>
-                        <field name="floor"/>
-                        <field name="number"/>
-                        <field name="start_date"/>
-                        <field name="end_date"/>                        
-                    </group>
-                    <notebook colspan="4">
-                        <page string="Contacts">
-                            <field name="tenant_pic_ids" widget="one2many_list">
-                                <tree string="Contacts">
-                                    <field name="name"/>
-                                    <field name="title"/>
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
+                <form string="Tenant" version="7.0">  
+					<sheet>
+	                    <group colspan="4">                            
+	                        <field name="name"/>
+	                        <field name="company"/>
+	                        <field name="category"/>
+	                        <field name="grade"/>                        
+	                        <field name="participant"/>                            
+	                        <field name="location"/>
+	                        <field name="floor"/>
+	                        <field name="number"/>
+	                        <field name="start_date"/>
+	                        <field name="end_date"/>                        
+	                    </group>
+	                    <notebook colspan="4">
+	                        <page string="Contacts">
+	                            <field name="customer_ids" widget="one2many_list">
+	                                <tree string="Contacts">
+	                                    <field name="name"/>
+	                                    <field name="title"/>                                    
+	                                </tree>
+	                            </field>
+	                        </page>
+							<page string="Messages">
+	                            <field name="message_ids" widget="one2many_list">
+	                                <tree string="Messages">
+	                                    <field name="customer_id"/>
+	                                    <field name="subject"/>
+	                                </tree>
+	                            </field>
+	                        </page>                        
+	                    </notebook>											
+					</sheet>                	
                 </form>
             </field>
         </record>
@@ -38,23 +48,46 @@
             <field name="model">rdm.tenant</field>			
             <field name="type">tree</field>						
             <field name="arch" type="xml">
-                <tree string="Customer">
-                    <field name="name"/>                        
-                    <field name="company"/>
-                    <field name="grade"/>                     
-                    <field name="participant"/>
+                <tree string="Tenant">
+                    <field name="name"/>             
+                   	<field name="company"/>
+                    <field name="category"/>
+                    <field name="grade"/>                        
+                    <field name="participant"/>    
                 </tree>
             </field>
         </record>
-        
-        <!-- RDM/ACTION -->
-        <!-- TENANT -->
-	<record model="ir.actions.act_window" id="action_rdm_tenant">
+                               	
+		<!-- RDM/TENANT MESSAGE-->		
+        <record model="ir.ui.view" id="view_rdm_tenant_message_form">
+            <field name="name">rdm.tenant.message.form</field>
+            <field name="model">rdm.tenant.message</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Tenant Message">  
+                    <group colspan="4">                            
+                        <field name="tenant_id"/>
+                        <field name="customer_id"/>
+                        <field name="subject"/>
+                        <field name="message"/>                        
+                    </group>
+                </form>
+            </field>
+        </record>
+                                
+   		<!-- RDM/ACTION -->
+    	<!-- TENANT -->
+		<record model="ir.actions.act_window" id="action_rdm_tenant">
             <field name="name">Tenant</field>
             <field name="res_model">rdm.tenant</field>
             <field name="view_mode">tree,form</field>
-        </record>		
-        <!-- MENU -->
-        
+    	</record>
+    	
+    	<!-- TENANT MESSAGE-->
+		<record model="ir.actions.act_window" id="action_rdm_tenant_message">
+            <field name="name">Tenant Message</field>
+            <field name="res_model">rdm.tenant.message</field>
+            <field name="view_mode">tree,form</field>
+    	</record>    	
     </data>
 </openerp>
