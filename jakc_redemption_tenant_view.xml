@@ -6,7 +6,13 @@
             <field name="model">rdm.tenant</field>						
             <field name="type">form</field>						
             <field name="arch" type="xml">
-                <form string="Tenant" version="7.0">  
+                <form string="Tenant" version="7.0">
+                    <header>
+						<button name="trans_disable" String="Disable" type="object" class="oe_highlight" states="active" groups="base.group_rdm_manager"/>
+						<button name="trans_enable" String="Enable" type="object" class="oe_highlight" states="disable" groups="base.group_rdm_manager"/>
+						<button name="trans_terminate" String="Terminate" type="object" class="oe_highlight" states="active" groups="base.group_rdm_manager"/>						
+                        <button name="trans_reset" String="Re-Open" type="object" class="oe_highlight" states="terminate" groups="base.group_rdm_manager"/>                                                                       	                        	                   
+                   </header>                 	                	 
 					<sheet>
 	                    <group colspan="4">                            
 	                        <field name="name"/>
@@ -18,7 +24,8 @@
 	                        <field name="floor"/>
 	                        <field name="number"/>
 	                        <field name="start_date"/>
-	                        <field name="end_date"/>                        
+	                        <field name="end_date"/>
+	                        <field name="state"/>                        
 	                    </group>
 	                    <notebook colspan="4">
 	                        <page string="Contacts">
